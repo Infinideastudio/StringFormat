@@ -1,0 +1,3 @@
+midp+10,upp+lspc*4,rightp-midp+10,24
+leftp,midp-10,downp-24,downp
+midp+10,rightp,downp-24,downp
