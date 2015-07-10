@@ -19,15 +19,15 @@ inline void inputWithTip(string tip, string& str){
 }
 
 int main(){
-	string  strfile = "", stroutfile = "", demostr_rulein = "", demostr_ruleout = "";
-
+	string strfile = "", stroutfile = "", demostr_rulein = "", demostr_ruleout = "";
+	//string demostr = "";
 	inputWithTip("请输入源字符串所在文件", strfile);
 	//inputWithTip("请输入源字符串", demostr);
 	inputWithTip("请输入源字符串的规则（规律）", demostr_rulein);
 	inputWithTip("请输入目标字符串的规则（规律）", demostr_ruleout);
 	inputWithTip("请输入目标字符串文件地址", stroutfile);
 
-	cout << endl << endl << endl;
+	cout << endl;
 
 	char buffer[256];
 	ifstream myfile(strfile);

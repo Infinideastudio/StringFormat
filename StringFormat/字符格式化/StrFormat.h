@@ -51,7 +51,7 @@ private:
 	static string getVarInSrcStr(string str, string rule, int var_position, int var_position_end, int last_var_end, int& real_pos_end){
 		if (var_position < 0) return "";
 
-		if (var_position == 0 && var_position_end == rule.length())  //规则字符串只有一个规则（选中整个字符串）
+		if (var_position == 0 && var_position_end == rule.length() - 1)  //规则字符串只有一个规则（选中整个字符串）
 		{
 			return str;
 		}
@@ -98,9 +98,10 @@ private:
 		return -1;
 	}
 public:
-	static string formatString(string str, string rule_str, string rule_dest){
+	static string _formatString(string str, string rule_str, string rule_dest){
 		map<int,string> rule_str_vars = getAllVar(rule_str);
 		map<int,string> rule_dest_vars = getAllVar(rule_dest);
+		if (rule_dest_vars.size() == 0) return "DEST_VARS_EMPTY";
 		map<int,string>::iterator it2;
 		map<int,string>::iterator itmp;
 		bool notfirst = false;
@@ -124,6 +125,19 @@ public:
 				notfirst = true;
 			}
 			
+		}
+		return result;
+	}
+	static string formatString(string str, string rule_str, string rule_dest){
+		bool OK = false;
+		string result;
+		string rule = rule_dest;
+		while (!OK){
+			string tmpResult = _formatString(str, rule_str, rule);
+			if (tmpResult == "DEST_VARS_EMPTY")
+				OK = true;
+			else
+				rule = tmpResult, result = tmpResult;
 		}
 		return result;
 	}
